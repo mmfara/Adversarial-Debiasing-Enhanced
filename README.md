@@ -97,6 +97,8 @@ Zhang, B. H., Lemoine, B., & Mitchell, M. (2018).
 **Mitigating Unwanted Biases with Adversarial Learning.**
 *Proceedings of the 2018 AAAI/ACM Conference on AI, Ethics, and Society.*
 
+[https://doi.org/10.1145/3278721.3278779](https://doi.org/10.1145/3278721.3278779)
+
 ---
 
 ## 📖 License
@@ -108,3 +110,23 @@ MIT License. See `LICENSE` for details.
 ## 🙌 Acknowledgments
 
 Based on the original [AIF360 Adversarial Debiasing](https://aif360.readthedocs.io/en/stable/modules/generated/aif360.algorithms.inprocessing.AdversarialDebiasing.html) implementation by IBM Research. This fork includes enhancements to better support research on intersectional fairness in machine learning.
+
+## 📖 Citation
+
+If you use this code in your research or applications, **please cite the following paper**:
+
+> Farayola, Michael Mayowa, Malika Bendechache, Takfarinas Saber, Regina Connolly, and Irina Tal.  
+> *Enhancing Algorithmic Fairness: Integrative Approaches and Multi-Objective Optimization Application in Recidivism Models*.  
+> In **Proceedings of the 19th International Conference on Availability, Reliability and Security (ARES 2024)**, pages 1–10, ACM, 2024.  
+> [https://doi.org/10.1145/3664476.3669978](https://doi.org/10.1145/3664476.3669978)
+
+BibTeX:
+```bibtex
+@inproceedings{farayola2024enhancing,
+  title={Enhancing Algorithmic Fairness: Integrative Approaches and Multi-Objective Optimization Application in Recidivism Models},
+  author={Farayola, Michael Mayowa and Bendechache, Malika and Saber, Takfarinas and Connolly, Regina and Tal, Irina},
+  booktitle={Proceedings of the 19th International Conference on Availability, Reliability and Security},
+  pages={1--10},
+  year={2024}
+}
+
