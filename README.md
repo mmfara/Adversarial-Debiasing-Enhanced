@@ -4,19 +4,19 @@ This repository contains an enhanced implementation of the **Adversarial Debiasi
 
 ## ✨ Features
 
-- ✅ **Intersectional Debiasing**  
+- **Intersectional Debiasing**  
   Supports multiple protected attributes, including intersectional combinations (e.g., race+gender).
 
-- ✅ **Validation & Early Stopping**  
+- **Validation & Early Stopping**  
   Monitors validation loss and stops training early to prevent overfitting.
 
-- ✅ **Dropout API with Reproducibility**  
+- **Dropout API with Reproducibility**  
   Controlled dropout with explicit seeds for consistent results.
 
-- ✅ **Verbose Logging**  
+- **Verbose Logging**  
   Optional progress logs to monitor training and validation loss.
 
-- ✅ **Compatible with AIF360 BinaryLabelDataset**  
+- **Compatible with AIF360 BinaryLabelDataset**  
   Seamless integration with existing fairness datasets and evaluation tools.
 
 ---
