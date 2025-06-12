@@ -103,7 +103,7 @@ Zhang, B. H., Lemoine, B., & Mitchell, M. (2018).
 
 ## 📖 License
 
-MIT License. See `LICENSE` for details.
+This project uses and extends open-source components from IBM's [AIF360](https://github.com/IBM/AIF360) and the [BlackBoxAuditing](https://github.com/algofairness/BlackBoxAuditing) toolkit..
 
 ---
 
