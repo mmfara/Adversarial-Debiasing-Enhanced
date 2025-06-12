@@ -1,4 +1,4 @@
-# Enhanced Adversarial Debiasing with Intersectionality and Validation Support
+# Enhanced Adversarial Debiasing (Intersectionality and Validation Support)
 
 This repository contains an enhanced implementation of the **Adversarial Debiasing** algorithm from [AIF360](https://github.com/IBM/AIF360), with additional support for intersectional fairness, validation-based early stopping, and improved training robustness.
 
