@@ -107,11 +107,4 @@ MIT License. See `LICENSE` for details.
 
 ## 🙌 Acknowledgments
 
-Based on the original [AIF360 Adversarial Debiasing](https://github.com/IBM/AIF360) implementation by IBM Research. This fork includes enhancements to better support research on intersectional fairness in machine learning.
-
-```
-
----
-
-Let me know if you'd like a badge section (e.g., for GitHub Actions, license, etc.) or a diagram to illustrate the model flow!
-```
+Based on the original [AIF360 Adversarial Debiasing](https://aif360.readthedocs.io/en/stable/modules/generated/aif360.algorithms.inprocessing.AdversarialDebiasing.html) implementation by IBM Research. This fork includes enhancements to better support research on intersectional fairness in machine learning.
