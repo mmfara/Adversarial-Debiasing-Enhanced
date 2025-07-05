@@ -44,7 +44,7 @@ bash
 pip install aif360 tensorflow==1.15
 
 
-
+```
 ### 2. Example Usage
 
 import numpy as np
@@ -102,7 +102,7 @@ ad.fit(train)
 preds = ad.predict(test)
 
 # Now `preds` is a debiased BinaryLabelDataset
-
+```
 ---
 
 ## 🆚 Comparison with AIF360 Default
