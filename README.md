@@ -1,33 +1,38 @@
-# Enhanced Adversarial Debiasing (Intersectionality and Validation Support)
+# 🧠 Enhanced Adversarial Debiasing (AD⁺)
 
-This repository contains an enhanced implementation of the **Adversarial Debiasing** algorithm from [AIF360](https://github.com/IBM/AIF360), with additional support for intersectional fairness, validation-based early stopping, and improved training robustness.
+This repository provides an enhanced implementation of the **Adversarial Debiasing** algorithm from [AIF360](https://github.com/IBM/AIF360), extended to support **multi-class protected attributes**, **intersectional fairness via label encoding**, and **robust training techniques** including gradient clipping and input validation.
+
+---
 
 ## ✨ Features
 
-- **Intersectional Debiasing**  
-  Supports multiple protected attributes, including intersectional combinations (e.g., race+gender).
+- **Multi-Class Protected Attribute Support**  
+  Debias against sensitive attributes with more than two categories (e.g., race = {White, Black, Asian, Hispanic}).
+
+- **Intersectional Group Debiasing**  
+  Supports fairness over combinations like race × gender by encoding intersectional groups into a single categorical attribute.
 
 - **Validation & Early Stopping**  
-  Monitors validation loss and stops training early to prevent overfitting.
+  Monitors validation loss to stop training before overfitting.
 
-- **Dropout API with Reproducibility**  
-  Controlled dropout with explicit seeds for consistent results.
+- **Reproducible Dropout and Random Seeding**  
+  Ensures consistent training runs.
 
-- **Verbose Logging**  
-  Optional progress logs to monitor training and validation loss.
+- **Stable Training**  
+  Gradient clipping and input validation improve convergence and robustness on real-world data.
 
-- **Compatible with AIF360 BinaryLabelDataset**  
-  Seamless integration with existing fairness datasets and evaluation tools.
+- **Compatible with AIF360**  
+  Drop-in replacement for `AdversarialDebiasing`, works with `BinaryLabelDataset`.
 
 ---
 
 ## 📦 Requirements
 
 - Python 3.6+
-- TensorFlow 1.x (`tensorflow.compat.v1`)
+- TensorFlow 1.x via `tensorflow.compat.v1`
 - AIF360 (`pip install aif360`)
 
-**Note**: This implementation uses TensorFlow 1.x via `tensorflow.compat.v1` and disables eager execution explicitly.
+> ⚠️ This implementation disables eager execution using `tf.disable_v2_behavior()` and must run under TensorFlow 1.x compatibility mode.
 
 ---
 
@@ -35,26 +40,52 @@ This repository contains an enhanced implementation of the **Adversarial Debiasi
 
 ### 1. Install Dependencies
 
-```bash
+bash
 pip install aif360 tensorflow==1.15
-````
+
+
 
 ### 2. Example Usage
 
-```python
+import numpy as np
+import tensorflow.compat.v1 as tf
 from aif360.datasets import AdultDataset
 from enhanced_adversarial_debiasing import AdversarialDebiasing
-import tensorflow.compat.v1 as tf
 
+# Disable eager execution (required for TF 1.x style code)
 tf.disable_v2_behavior()
-sess = tf.Session()
 
+# Load dataset
 dataset = AdultDataset()
+
+# Split into training and test sets
 train, test = dataset.split([0.7], shuffle=True)
 
+# STEP 1: Extract individual protected attributes
+race = dataset.protected_attributes[:, dataset.protected_attribute_names.index('race')]
+gender = dataset.protected_attributes[:, dataset.protected_attribute_names.index('sex')]
+
+# STEP 2: Encode intersectional group label
+num_gender_values = len(np.unique(gender))
+intersectional = race * num_gender_values + gender  # e.g., 0–3 for binary race/gender
+
+# STEP 3: Replace protected attributes in dataset with the encoded intersectional group
+dataset.protected_attributes = intersectional.reshape(-1, 1)
+dataset.protected_attribute_names = ['race_gender']
+
+# Repeat for train/test (since they're subsets of the original)
+train.protected_attributes = dataset.protected_attributes[:len(train)]
+test.protected_attributes = dataset.protected_attributes[len(train):]
+train.protected_attribute_names = ['race_gender']
+test.protected_attribute_names = ['race_gender']
+
+# STEP 4: Setup TensorFlow session
+sess = tf.Session()
+
+# STEP 5: Train Enhanced Adversarial Debiasing model
 ad = AdversarialDebiasing(
-    privileged_groups=[{'sex': 1}],
-    unprivileged_groups=[{'sex': 0}],
+    privileged_groups=[{'race_gender': 0}],  # You can customize this
+    unprivileged_groups=[{'race_gender': 1}, {'race_gender': 2}, {'race_gender': 3}],
     scope_name='adv_debiasing',
     sess=sess,
     num_epochs=50,
@@ -66,9 +97,11 @@ ad = AdversarialDebiasing(
     debias=True
 )
 
+# STEP 6: Fit and evaluate
 ad.fit(train)
 preds = ad.predict(test)
-```
+
+# Now `preds` is a debiased BinaryLabelDataset
 
 ---
 
