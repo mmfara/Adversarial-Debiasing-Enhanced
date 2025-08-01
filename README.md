@@ -12,10 +12,7 @@ This repository provides an enhanced implementation of the **Adversarial Debiasi
 - **Intersectional Group Debiasing**  
   Supports fairness over combinations like race × gender by encoding intersectional groups into a single categorical attribute.
 
-- **Validation & Early Stopping**  
-  Monitors validation loss to stop training before overfitting.
-
-- **Reproducible Dropout and Random Seeding**  
+- **Reproducible Random Seeding**  
   Ensures consistent training runs.
 
 - **Stable Training**  
