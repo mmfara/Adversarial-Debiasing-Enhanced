@@ -92,7 +92,6 @@ ad = AdversarialDebiasing(
     batch_size=128,
     seed=42,
     validation_dataset=test,
-    early_stopping_patience=5,
     verbose=True,
     debias=True
 )
