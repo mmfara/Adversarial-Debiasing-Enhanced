@@ -144,6 +144,7 @@ This project uses and extends open-source components from IBM's [AIF360](https:/
 
 Based on the original [AIF360 Adversarial Debiasing](https://aif360.readthedocs.io/en/stable/modules/generated/aif360.algorithms.inprocessing.AdversarialDebiasing.html) implementation by IBM Research. This fork includes enhancements to better support research on intersectional fairness in machine learning.
 
+<!--
 ## 📖 Citation
 
 If you use this code in your research or applications, **please cite the following paper**:
@@ -162,4 +163,5 @@ BibTeX:
   pages={1--10},
   year={2024}
 }
+-->
 
