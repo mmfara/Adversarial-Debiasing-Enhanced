@@ -91,8 +91,6 @@ ad = AdversarialDebiasing(
     num_epochs=50,
     batch_size=128,
     seed=42,
-    validation_dataset=test,
-    verbose=True,
     debias=True
 )
 
@@ -110,9 +108,6 @@ preds = ad.predict(test)
 | --------------------------- | ---------------- | --------------- |
 | Multi-attribute Support     | ✅                | ❌               |
 | Intersectional Fairness     | ✅                | ❌               |
-| Validation & Early Stopping | ✅                | ❌               |
-| Dropout Control & Seeding   | ✅                | ❌               |
-| Logging & Verbosity         | ✅                | Limited         |
 
 ---
 
